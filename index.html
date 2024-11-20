@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather App</title>
+  <link rel="stylesheet" type="text/css" href="style.css"> 
+</head>
+<body>
+    <div id="container">
+        <div class="content">
+            <h1>Weather App</h1>
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Enter city name">
+                <button id="search-btn">Search</button>
+            </div>
+            <div id="weather-info"></div>
+        </div>
+    </div>
+
+    <script>
+        const apiKey = '0fe5ce5c110d026f65bd1d04647c15cc'; 
+
+document.getElementById('search-btn').addEventListener('click', () => {
+    const city = document.getElementById('search-input').value;
+    getWeather(city);
+});
+
+function getWeather(city) {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`)
+        .then(response => response.json())
+        .then(data => {
+            const weatherInfo = document.getElementById('weather-info');
+            weatherInfo.innerHTML = '';
+
+            const weatherCard = document.createElement('div');
+            weatherCard.classList.add('weather-card');
+
+            const weatherIcon = document.createElement('img');
+            weatherIcon.src = `https://openweathermap.org/img/w/${data.weather[0].icon}.png`;
+            weatherCard.appendChild(weatherIcon);
+
+            const weatherDetails = document.createElement('div');
+            weatherDetails.classList.add('weather-info');
+
+            const cityName = document.createElement('h2');
+            cityName.textContent = data.name;
+            weatherDetails.appendChild(cityName);
+
+            const temperature = document.createElement('p');
+            temperature.textContent = `Temperature: ${Math.round(data.main.temp - 273.15)}°C`;
+            weatherDetails.appendChild(temperature);
+
+            const humidity = document.createElement('p');
+            humidity.textContent = `Humidity: ${data.main.humidity}%`;
+            weatherDetails.appendChild(humidity);
+
+            const windSpeed = document.createElement('p');
+            windSpeed.textContent = `Wind Speed: ${data.wind.speed} m/s`;
+            weatherDetails.appendChild(windSpeed);
+
+            const pressure = document.createElement('p');
+            pressure.textContent = `Pressure: ${data.main.pressure} hPa`;
+            weatherDetails.appendChild(pressure);
+
+            weatherCard.appendChild(weatherDetails);
+            weatherInfo.appendChild(weatherCard);
+        })
+        .catch(error => {
+            console.log('Error:', error);
+            const weatherInfo = document.getElementById('weather-info');
+            weatherInfo.innerHTML = 'Error fetching weather data';
+        });
+}
+
+    </script>
+</body>
+</html>

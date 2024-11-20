@@ -1,0 +1,86 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url(images/beautiful-shining-stars-night-sky.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: Arial, sans-serif;
+    color: #a90d0d;
+}
+
+
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.content {
+    text-align: center;
+}
+
+h1 {
+    font-size: 40px;
+    margin-top: 0;
+}
+
+.search-box {
+    margin-top: 20px;
+}
+
+#search-input {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgba(250, 247, 247, 0.7);
+    width: 300px;
+    margin-right: 10px;
+}
+
+#search-btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #26ae08;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#search-btn:hover {
+    background-color: #bd0d1c;
+}
+
+#weather-info {
+    margin-top: 30px;
+}
+
+.weather-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(183, 168, 168, 0.7);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+.weather-card img {
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+}
+
+.weather-card .weather-info {
+    text-align: left;
+}
+
+.weather-card h2 {
+    margin: 0;
+}
+
+.weather-card p {
+    margin: 5px 0;
+}
